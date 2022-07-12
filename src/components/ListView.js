@@ -1,10 +1,38 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import { Link } from 'react-router-dom'
-const ListView = () => {
-  return <h4>list view</h4>
-}
+import React from 'react';
+import styled from 'styled-components';
+import { formatPrice } from '../utils/helpers';
+import { Link } from 'react-router-dom';
+const ListView = ({ products }) => {
+  const [showMore, setShowMore] = React.useState(false);
+  return (
+    <Wrapper>
+      {products.map(({ id, image, name, price, description }) => {
+        return (
+          <article key={id}>
+            <img src={image} alt={name} />
+            <div>
+              <h5>{name}</h5>
+              <span className="price">{formatPrice(price)}</span>
+              <p>
+                {showMore ? description : description.substring(0, 150)}...
+                <button
+                  className="show-more"
+                  onClick={() => setShowMore(!showMore)}
+                >
+                  {showMore ? 'show less' : 'read more'}
+                </button>
+              </p>
+
+              <Link className="btn" to={`products/${id}`}>
+                details
+              </Link>
+            </div>
+          </article>
+        );
+      })}
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
   display: grid;
@@ -34,6 +62,16 @@ const Wrapper = styled.section`
     font-size: 0.5rem;
     padding: 0.25rem 0.5rem;
   }
+  .show-more {
+    border: transparent;
+    background: transparent;
+    cursor: pointer;
+    color: var(--clr-primary-6);
+    transition: var(--transition);
+  }
+  .show-more:hover {
+    color: var(--clr-primary-3);
+  }
   @media (min-width: 992px) {
     article {
       display: grid;
@@ -42,6 +80,6 @@ const Wrapper = styled.section`
       align-items: center;
     }
   }
-`
+`;
 
-export default ListView
+export default ListView;
