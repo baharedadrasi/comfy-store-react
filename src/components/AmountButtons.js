@@ -2,30 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
-const AmountButtons = ({ stock }) => {
-  const [amount, setAmount] = React.useState(1);
-
-  const changeAmount = (type) => {
-    setAmount((oldAmount) => {
-      let newAmount;
-      if (type === 'inc') {
-        newAmount = oldAmount + 1;
-        if (newAmount <= stock) {
-          return newAmount;
-        } else {
-          return stock;
-        }
-      }
-      if (type === 'dec') {
-        newAmount = oldAmount - 1;
-        if (newAmount <= 1) {
-          return 1;
-        } else {
-          return newAmount;
-        }
-      }
-    });
-  };
+const AmountButtons = ({ changeAmount, amount }) => {
   return (
     <Wrapper className="amount-btns">
       <button onClick={() => changeAmount('dec')}>
