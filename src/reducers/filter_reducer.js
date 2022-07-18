@@ -8,7 +8,7 @@ import {
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
 } from '../actions';
-import Filters from '../components/Filters';
+// import Filters from '../components/Filters';
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {

@@ -26,9 +26,6 @@ const SingleProductPage = () => {
   const {
     id: sku,
     price,
-    shipping,
-    colors,
-    category,
     images,
     reviews,
     stars,
@@ -40,14 +37,15 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
-
   useEffect(() => {
     if (error) {
       setTimeout(() => {
         history.push('/');
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [error]);
 
   if (laoding) {
